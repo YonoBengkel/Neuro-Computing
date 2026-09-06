@@ -1,0 +1,44 @@
+	XOR
+	X1	X2	XOR	Y		WEIGHT	NILAI		EPOCH 1	X1	X2	SUM	OUTPUT	TARGET	ERROR	W1	W2	W3
+	0	0	=OR(AND(B3,NOT(C3)),AND(C3,NOT(B3)))	=IF(D3, 1,0)		W1	-0.1254598811526375			0	0	=($H$10*$H$3)+(K3*$H$4)+(L3*$H$5)	=IF(M3>=$H$8,1,0)	=$E$3	=O3-N3	=$H$3+$H$12*$P3*$H$10	=$H$4+$H$12*$P3*$K3	=$H$5+$H$12*$P3*$L3
+	0	1	=OR(AND(B4,NOT(C4)),AND(C4,NOT(B4)))	=IF(D4, 1,0)		W2	0.4507143064099162			0	1	=($H$10*$Q$3)+(K4*$R$3)+(L4*$S$3)	=IF(M4>=$H$8,1,0)	=$E$4	=O4-N4	=$Q$3+$H$12*$P4*$H$10	=$R$3+$H$12*$P4*$K4	=$S$3+$H$12*$P4*$L4
+	1	0	=OR(AND(B5,NOT(C5)),AND(C5,NOT(B5)))	=IF(D5, 1,0)		W3	0.2319939418114051			1	0	=($H$10*$Q$4)+(K5*$R$4)+(L5*$S$4)	=IF(M5>=$H$8,1,0)	=$E$5	=O5-N5	=$Q$4+$H$12*$P5*$H$10	=$R$4+$H$12*$P5*$K5	=$S$4+$H$12*$P5*$L5
+	1	1	=OR(AND(B6,NOT(C6)),AND(C6,NOT(B6)))	=IF(D6, 1,0)						1	1	=($H$10*$Q$5)+(K6*$R$5)+(L6*$S$5)	=IF(M6>=$H$8,1,0)	=$E$6	=O6-N6	=$Q$5+$H$12*$P6*$H$10	=$R$5+$H$12*$P6*$K6	=$S$5+$H$12*$P6*$L6
+						Threshold	NILAI
+	KET	0	FALSE			t	0		EPOCH 2	X1	X2	SUM	OUTPUT	TARGET	ERROR	W1	W2	W3
+		1	TRUE							0	0	=($H$10*$Q$6)+(K9*$R$6)+(L9*$S$6)	=IF(M9>=$H$8,1,0)	=$E$3	=O9-N9	=$Q$6+$H$12*$P9*$H$10	=$R$6+$H$12*$P9*$K9	=$S$6+$H$12*$P9*$L9
+		XOR	(X1 AND NOT X2) OR (X2 AND NOT X1)			BIAS	1			0	1	=($H$10*$Q$9)+(K10*$R$9)+(L10*$S$9)	=IF(M10>=$H$8,1,0)	=$E$4	=O10-N10	=$Q$9+$H$12*$P10*$H$10	=$R$9+$H$12*$P10*$K10	=$S$9+$H$12*$P10*$L10
+		η	Learning Rate (Ex: 0.5)							1	0	=($H$10*$Q$10)+(K11*$R$10)+(L11*$S$10)	=IF(M11>=$H$8,1,0)	=$E$5	=O11-N11	=$Q$10+$H$12*$P11*$H$10	=$R$10+$H$12*$P11*$K11	=$S$10+$H$12*$P11*$L11
+		t	Threshold aktivasi (t = 0)			η	0.5			1	1	=($H$10*$Q$11)+(K12*$R$11)+(L12*$S$11)	=IF(M12>=$H$8,1,0)	=$E$6	=O12-N12	=$Q$11+$H$12*$P12*$H$10	=$R$11+$H$12*$P12*$K12	=$S$11+$H$12*$P12*$L12
+		y	Output Perceptron
+		x_i	input ke-i  (x0 = Bias = 1)						EPOCH 3	X1	X2	SUM	OUTPUT	TARGET	ERROR	W1	W2	W3
+										0	0	=($H$10*$Q$12)+(K15*$R$12)+(L15*$S$12)	=IF(M15>=$H$8,1,0)	=$E$3	=O15-N15	=$Q$12+$H$12*$P15*$H$10	=$R$12+$H$12*$P15*$K15	=$S$12+$H$12*$P15*$L15
+	PERCEPTRON WEIGHT UPDATE INFORMATION									0	1	=($H$10*$Q$15)+(K16*$R$15)+(L16*$S$15)	=IF(M16>=$H$8,1,0)	=$E$4	=O16-N16	=$Q$15+$H$12*$P16*$H$10	=$R$15+$H$12*$P16*$K16	=$S$15+$H$12*$P16*$L16
+										1	0	=($H$10*$Q$16)+(K17*$R$16)+(L17*$S$16)	=IF(M17>=$H$8,1,0)	=$E$5	=O17-N17	=$Q$16+$H$12*$P17*$H$10	=$R$16+$H$12*$P17*$K17	=$S$16+$H$12*$P17*$L17
+										1	1	=($H$10*$Q$17)+(K18*$R$17)+(L18*$S$17)	=IF(M18>=$H$8,1,0)	=$E$6	=O18-N18	=$Q$17+$H$12*$P18*$H$10	=$R$17+$H$12*$P18*$K18	=$S$17+$H$12*$P18*$L18
+
+	WEIGHTED SUM FUNCTION								EPOCH 4	X1	X2	SUM	OUTPUT	TARGET	ERROR	W1	W2	W3
+										0	0	=($H$10*$Q$18)+(K21*$R$18)+(L21*$S$18)	=IF(M21>=$H$8,1,0)	=$E$3	=O21-N21	=$Q$18+$H$12*$P21*$H$10	=$R$18+$H$12*$P21*$K21	=$S$18+$H$12*$P21*$L21
+										0	1	=($H$10*$Q$21)+(K22*$R$21)+(L22*$S$21)	=IF(M22>=$H$8,1,0)	=$E$4	=O22-N22	=$Q$21+$H$12*$P22*$H$10	=$R$21+$H$12*$P22*$K22	=$S$21+$H$12*$P22*$L22
+										1	0	=($H$10*$Q$22)+(K23*$R$22)+(L23*$S$22)	=IF(M23>=$H$8,1,0)	=$E$5	=O23-N23	=$Q$22+$H$12*$P23*$H$10	=$R$22+$H$12*$P23*$K23	=$S$22+$H$12*$P23*$L23
+	ACTIVATION FUNCTION (STEP)									1	1	=($H$10*$Q$23)+(K24*$R$23)+(L24*$S$23)	=IF(M24>=$H$8,1,0)	=$E$6	=O24-N24	=$Q$23+$H$12*$P24*$H$10	=$R$23+$H$12*$P24*$K24	=$S$23+$H$12*$P24*$L24
+
+									EPOCH 5	X1	X2	SUM	OUTPUT	TARGET	ERROR	W1	W2	W3
+										0	0	=($H$10*$Q$24)+(K27*$R$24)+(L27*$S$24)	=IF(M27>=$H$8,1,0)	=$E$3	=O27-N27	=$Q$24+$H$12*$P27*$H$10	=$R$24+$H$12*$P27*$K27	=$S$24+$H$12*$P27*$L27
+										0	1	=($H$10*$Q$27)+(K28*$R$27)+(L28*$S$27)	=IF(M28>=$H$8,1,0)	=$E$4	=O28-N28	=$Q$27+$H$12*$P28*$H$10	=$R$27+$H$12*$P28*$K28	=$S$27+$H$12*$P28*$L28
+										1	0	=($H$10*$Q$28)+(K29*$R$28)+(L29*$S$28)	=IF(M29>=$H$8,1,0)	=$E$5	=O29-N29	=$Q$28+$H$12*$P29*$H$10	=$R$28+$H$12*$P29*$K29	=$S$28+$H$12*$P29*$L29
+										1	1	=($H$10*$Q$29)+(K30*$R$29)+(L30*$S$29)	=IF(M30>=$H$8,1,0)	=$E$6	=O30-N30	=$Q$29+$H$12*$P30*$H$10	=$R$29+$H$12*$P30*$K30	=$S$29+$H$12*$P30*$L30
+
+	ARSITEKTUR JARINGAN				WEIGHT AKHIR	NILAI
+					W1	=Q30
+					W2	=R30
+					W3	=S30
+
+
+
+
+	CATATAN	XOR bukan linearly separable, sehingga ERROR tidak pernah nol dan bobot terus berosilasi. Single Layer Perceptron mustahil konvergen berapa pun jumlah epoch-nya.
+
+
+
+

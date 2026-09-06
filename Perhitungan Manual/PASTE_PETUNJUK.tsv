@@ -1,0 +1,40 @@
+
+	PERHITUNGAN MANUAL - 20 LANGKAH AWAL
+
+	Sumber kode	2-Multi-Perceptron/XOR_Multi_Perceptron.ipynb
+	Format acuan	41_Ilham Bintang Satria_ML11.xlsx
+
+	SHEET	ISI				PARAMETER
+	SLP-XOR	Single Layer Perceptron (notebook Cell 8) - 20 langkah, gagal konvergen				seed=42, mu=0.5, aktivasi step (SUM>=0)
+	MLP-XOR	Multi Layer Perceptron + Backpropagation (train_mlp) - 20 langkah				seed=41, mu=0.5, aktivasi sigmoid
+
+	CATATAN	1 epoch = 4 langkah (4 pola input XOR). Jadi 20 langkah = 5 epoch.
+		Bobot diperbarui SETIAP pola (online/stochastic), bukan sekali per epoch.
+		Bobot masuk tiap baris = bobot keluar baris sebelumnya (rantai rumus hidup).
+		Semua sel hasil adalah rumus, bukan angka tempelan. Ubah bobot awal -> semua ikut berubah.
+
+	NOTASI	Sheet memakai wi(r,i): r = 0 bias / 1 = I1 / 2 = I2, dan i = 1 untuk H1, 2 untuk H2.
+		Penomoran ini sama persis dengan komentar pada fungsi forward_pass() di notebook.
+
+	JIKA PASTE TSV	Klik sel A1 DULU, baru paste. Referensi rumus TIDAK ikut bergeser saat paste teks,
+		jadi salah posisi = seluruh angka salah TANPA pesan error. Impor .xlsx lebih aman.
+
+	RUMUS SLP (Single Layer Perceptron)
+	SUM       = (Bias x W1) + (X1 x W2) + (X2 x W3)
+	OUTPUT    = IF(SUM >= t ; 1 ; 0)      dengan t = 0
+	ERROR     = TARGET - OUTPUT
+	Wi_baru   = Wi_lama + mu x ERROR x Xi      (X0 = bias = 1)
+
+	RUMUS MLP (Backpropagation)
+	SI1       = wi(0,1) + wi(1,1) x I1 + wi(2,1) x I2
+	SI2       = wi(0,2) + wi(1,2) x I1 + wi(2,2) x I2
+	H1 / H2   = sigmoid(SI) = 1 / (1 + EXP(-SI))
+	SH        = wh0 + wh1 x H1 + wh2 x H2
+	C         = sigmoid(SH)
+	SE        = (Target - C)^2
+	dC        = C x (1 - C) x (Target - C)
+	dH1       = H1 x (1 - H1) x wh1 x dC      <- wh1 SEBELUM update
+	dH2       = H2 x (1 - H2) x wh2 x dC      <- wh2 SEBELUM update
+	Update wh : wh_i = wh_i + mu x H_i x dC        (H0 = 1)
+	Update wi : wi(r,i) = wi(r,i) + mu x I_r x dH_i    (I0 = 1)
+	MSE       = rata-rata SE dari 4 pola dalam 1 epoch
